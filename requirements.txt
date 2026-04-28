@@ -3,3 +3,4 @@ pandas
 langchain-groq
 langchain-experimental
 langchain-community
+tabulate
