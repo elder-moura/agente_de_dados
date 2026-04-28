@@ -29,9 +29,9 @@ for message in st.session_state.messages:
         st.markdown(message["content"])
 
 # --- FUNÇÃO DE CACHE PARA O RELATÓRIO NÃO TRAVAR O CHAT ---
-@st.cache_data
-def gerar_relatorio(dataframe):
-    return ydata_profiling.ProfileReport(dataframe, explorative=True)
+#@st.cache_data
+#def gerar_relatorio(dataframe):
+#    return ydata_profiling.ProfileReport(dataframe, explorative=True)
 # -----------------------------------------------------------
 
 if uploaded_file:
@@ -61,9 +61,9 @@ if uploaded_file:
 
     # Pré-análise automática local (Usando Cache)
     # Pré-análise automática local (Segura contra erros de Node)
-    with st.expander("📊 Abrir Relatório Automático (YData Profiling)", expanded=False):
-        st.write("Relatório gerado automaticamente:")
-        profile = gerar_relatorio(df)
+    #with st.expander("📊 Abrir Relatório Automático (YData Profiling)", expanded=False):
+    #    st.write("Relatório gerado automaticamente:")
+    #    profile = gerar_relatorio(df)
         
         # Transforma o relatório em HTML puro e isola na tela
         export_html = profile.to_html()
