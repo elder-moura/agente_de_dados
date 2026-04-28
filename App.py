@@ -73,7 +73,7 @@ if uploaded_file:
     with st.expander("👀 Visualizar Dados", expanded=False):
         st.dataframe(df.head())
 
-    # Agente LLM
+   # Agente LLM
     if api_key:
         try:
             llm = ChatGroq(
@@ -99,7 +99,6 @@ if uploaded_file:
                     st.markdown(prompt)
 
                 with st.chat_message("assistant"):
-                    # Trocamos o Callback de Streaming (que causava o erro) por um Spinner
                     with st.spinner("Analisando os dados e processando código..."):
                         try:
                             # Chama o agente de forma direta e segura
@@ -108,3 +107,6 @@ if uploaded_file:
                             st.session_state.messages.append({"role": "assistant", "content": response["output"]})
                         except Exception as e:
                             st.error(f"O agente encontrou uma dificuldade: {str(e)}\n\nTente fazer a pergunta de uma forma mais direta.")
+
+        except Exception as e:
+            st.error(f"Erro na configuração do Agente: {str(e)}")
