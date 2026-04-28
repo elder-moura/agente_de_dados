@@ -5,6 +5,7 @@ from streamlit_pandas_profiling import st_profile_report
 from langchain_groq import ChatGroq
 from langchain_experimental.agents import create_pandas_dataframe_agent
 from langchain_community.callbacks.streamlit import StreamlitCallbackHandler
+import streamlit.components.v1 as components
 
 # Configuração da página
 st.set_page_config(page_title="Auto-ML Agent Híbrido", layout="wide")
@@ -59,10 +60,14 @@ if uploaded_file:
             st.rerun()
 
     # Pré-análise automática local (Usando Cache)
+    # Pré-análise automática local (Segura contra erros de Node)
     with st.expander("📊 Abrir Relatório Automático (YData Profiling)", expanded=False):
         st.write("Relatório gerado automaticamente:")
         profile = gerar_relatorio(df)
-        st_profile_report(profile)
+        
+        # Transforma o relatório em HTML puro e isola na tela
+        export_html = profile.to_html()
+        components.html(export_html, height=800, scrolling=True)
 
     # Visualização rápida
     with st.expander("👀 Visualizar Dados", expanded=False):
