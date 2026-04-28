@@ -1,7 +1,5 @@
 streamlit
 pandas
-ydata-profiling
 langchain-groq
 langchain-experimental
 langchain-community
-setuptools
