@@ -1,0 +1,7 @@
+streamlit
+pandas
+ydata-profiling
+streamlit-pandas-profiling
+langchain-groq
+langchain-experimental
+langchain-community
