@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 #import ydata_profiling # <-- Apenas a versão moderna
-from streamlit_pandas_profiling import st_profile_report
+#from streamlit_pandas_profiling import st_profile_report
 from langchain_groq import ChatGroq
 from langchain_experimental.agents import create_pandas_dataframe_agent
 from langchain_community.callbacks.streamlit import StreamlitCallbackHandler
