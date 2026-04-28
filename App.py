@@ -1,11 +1,11 @@
 import streamlit as st
 import pandas as pd
-import ydata_profiling # <-- Apenas a versão moderna
+#import ydata_profiling # <-- Apenas a versão moderna
 from streamlit_pandas_profiling import st_profile_report
 from langchain_groq import ChatGroq
 from langchain_experimental.agents import create_pandas_dataframe_agent
 from langchain_community.callbacks.streamlit import StreamlitCallbackHandler
-import streamlit.components.v1 as components
+#import streamlit.components.v1 as components
 
 # Configuração da página
 st.set_page_config(page_title="Auto-ML Agent Híbrido", layout="wide")
