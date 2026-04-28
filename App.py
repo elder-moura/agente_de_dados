@@ -9,7 +9,7 @@ from langchain_community.callbacks.streamlit import StreamlitCallbackHandler
 
 # Configuração da página
 st.set_page_config(page_title="Auto-ML Agent Híbrido", layout="wide")
-st.title("🤖 Orquestrador de Data Science (Híbrido)")
+st.title("🤖 Orquestrador de Data Science")
 
 # Sidebar
 st.sidebar.header("Configurações")
