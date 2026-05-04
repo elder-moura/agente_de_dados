@@ -74,30 +74,30 @@ if uploaded_file:
     with st.expander("👀 Visualizar Dados", expanded=False):
         st.dataframe(df.head())
 
-   # Agente LLM
-    # Agente LLM com Hugging Face
+   # Agente LLM com Hugging Face
     if api_key:
         try:
-            # 1. Configura a conexão com a API gratuita do Hugging Face
+            # 1. Usando o Zephyr: Um modelo open source excelente, otimizado para Chat e código
             llm_endpoint = HuggingFaceEndpoint(
-                repo_id="mistralai/Mistral-7B-Instruct-v0.3", # Um excelente modelo gratuito
+                repo_id="HuggingFaceH4/zephyr-7b-beta", 
                 huggingfacehub_api_token=api_key,
                 temperature=0.1,
                 max_new_tokens=512
             )
             
-            # 2. Converte o modelo para o formato de Chat que o Agente entende
+            # 2. Converte o modelo para o formato de Chat
             llm = ChatHuggingFace(llm=llm_endpoint)
 
-            # 3. Cria o Agente
+            # 3. Cria o Agente com a estratégia clássica (ReAct)
             agent = create_pandas_dataframe_agent(
                 llm,
                 df,
                 verbose=True,
-                agent_type="tool-calling",
+                # Voltamos para o formato clássico, pois a HF gratuita não tem "tool-calling" nativo
+                agent_type="zero-shot-react-description", 
                 allow_dangerous_code=True,
                 handle_parsing_errors=True,
-                max_iterations=3,
+                max_iterations=4, # Dei um fôlego extra
                 number_of_head_rows=2
             )
 
@@ -107,7 +107,7 @@ if uploaded_file:
                     st.markdown(prompt)
 
                 with st.chat_message("assistant"):
-                    with st.spinner("Pensando e analisando com Hugging Face..."):
+                    with st.spinner("Pensando e analisando com Hugging Face (Zephyr)..."):
                         try:
                             response = agent.invoke({"input": prompt})
                             st.markdown(response["output"])
