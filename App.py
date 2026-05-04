@@ -75,14 +75,21 @@ if uploaded_file:
         st.dataframe(df.head())
 
    # Agente LLM
+    # Agente LLM com Hugging Face
     if api_key:
         try:
-            llm = ChatGroq(
-                model="llama-3.1-8b-instant",
-                groq_api_key=api_key,
-                temperature=0
+            # 1. Configura a conexão com a API gratuita do Hugging Face
+            llm_endpoint = HuggingFaceEndpoint(
+                repo_id="mistralai/Mistral-7B-Instruct-v0.3", # Um excelente modelo gratuito
+                huggingfacehub_api_token=api_key,
+                temperature=0.1,
+                max_new_tokens=512
             )
+            
+            # 2. Converte o modelo para o formato de Chat que o Agente entende
+            llm = ChatHuggingFace(llm=llm_endpoint)
 
+            # 3. Cria o Agente
             agent = create_pandas_dataframe_agent(
                 llm,
                 df,
@@ -100,9 +107,8 @@ if uploaded_file:
                     st.markdown(prompt)
 
                 with st.chat_message("assistant"):
-                    with st.spinner("Analisando os dados e processando código..."):
+                    with st.spinner("Pensando e analisando com Hugging Face..."):
                         try:
-                            # Chama o agente de forma direta e segura
                             response = agent.invoke({"input": prompt})
                             st.markdown(response["output"])
                             st.session_state.messages.append({"role": "assistant", "content": response["output"]})
