@@ -79,7 +79,7 @@ if uploaded_file:
         try:
             # 1. Usando o Zephyr: Um modelo open source excelente, otimizado para Chat e código
             llm_endpoint = HuggingFaceEndpoint(
-                repo_id="HuggingFaceH4/zephyr-7b-beta", 
+                repo_id="Qwen/Qwen2.5-7B-Instruct", 
                 huggingfacehub_api_token=api_key,
                 temperature=0.1,
                 max_new_tokens=512
