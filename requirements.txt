@@ -1,6 +1,6 @@
 streamlit
 pandas
-langchain-huggingface
+langchain-groq
 langchain-experimental
 langchain-community
 tabulate
