@@ -97,7 +97,7 @@ if uploaded_file:
                 agent_type="zero-shot-react-description", 
                 allow_dangerous_code=True,
                 handle_parsing_errors=True,
-                max_iterations=4, # Dei um fôlego extra
+                max_iterations=10, # Dei um fôlego extra
                 number_of_head_rows=2
             )
 
